@@ -7,7 +7,6 @@
 <body>
 
 <nav>
-<a href="/dashboard">Dashboard</a>
 <a href="/register">Register</a>
 <a href="/login">login</a>
 

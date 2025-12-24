@@ -24,6 +24,7 @@ Route::get('/logout',function(){
 Route::middleware('auth')->group(function () {
     Route::resource('customers', CustomerController::class);
 });
+
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
