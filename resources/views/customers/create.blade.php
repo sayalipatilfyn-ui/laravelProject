@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-<h2>Register Customer</h2>
+<h2>New Customer</h2>
 
 <form method="POST" action="/customers">
     @csrf
