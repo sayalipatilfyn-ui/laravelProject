@@ -10,10 +10,5 @@
 <a href="/register">Register</a>
 <a href="/login">login</a>
 
-@csrf
-<form method="POST" action="/logout">@csrf<button>Logout</button></form>
-</nav>
-@yield('content')
-
 </body>
 </html>

@@ -1,33 +1,54 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AccountController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\CustomerController;   
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\LoginController;
+
+
+/*
+|--------------------------------------------------------------------------
+| Public Routes
+|--------------------------------------------------------------------------
+*/
 
 Route::get('/', function () {
-    return redirect('/login');
+    return view('home');
 });
-Route::get('/register', [RegisterController::class, 'show']);
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/register', [RegisterController::class, 'showRegistrationForm']);
 Route::post('/register', [RegisterController::class, 'register']);
 
-Route::get('/login', [LoginController::class, 'show'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
+
 /*
-Route::get('/logout',function(){
-    return redirect('/login');
-})*/
+|--------------------------------------------------------------------------
+| Protected Routes (After Login)
+|--------------------------------------------------------------------------
+*/
 
 Route::middleware('auth')->group(function () {
-    Route::resource('customers', CustomerController::class);
+
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    });
+
+    Route::get('/transactions', function () {
+        return view('transactions');
+    });
+
+    //Route::resource('customers', CustomerController::class);
 });
 
-Route::middleware('auth')->group(function () {
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])
-        ->name('dashboard');
-
+Route::middleware('auth')->get('/dashboard', function () {
+    return view('dashboard');
 });

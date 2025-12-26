@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
-    protected $fillable = ['account_id', 'type', 'amount'];
+    protected $fillable = [
+        'bank_account_id',
+        'type',
+        'amount'
+    ];
 
-    public function account()
+    public function bankAccount()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(BankAccount::class);
     }
 }

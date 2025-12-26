@@ -10,9 +10,8 @@
 <a href="/customers/{{ $c->id }}"> View</a>
 </p>
 
-</div>
 @endforeach
-
+</div>
 @endsection
 
 
