@@ -69,13 +69,14 @@ function loadBalance() {
 // Deposit money
 function depositMoney() {
     const amount = document.getElementById('depositAmount').value;
-
+        console.log('amount: '+amount);
+        
     if (!amount || amount <= 0) {
         alert('Please enter a valid amount');
         return;
     }
 
-    fetch('/api/deposit', {
+    fetch('deposit', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

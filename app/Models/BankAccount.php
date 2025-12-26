@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BankAccount extends Model
 {
+    protected $table = 'bank_accounts';
+
     protected $fillable = [
         'user_id',
         'account_number',
@@ -14,6 +16,6 @@ class BankAccount extends Model
 
     public function transactions()
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class, 'bank_account_id');
     }
 }

@@ -33,4 +33,35 @@ class LoginController extends Controller
 
         return redirect('/login');
     }
+
+
+// public function login(Request $request)
+// {
+//     $request->validate([
+//         'email' => 'required|email',
+//         'password' => 'required|string',
+//     ]);
+
+//     if (Auth::attempt($request->only('email', 'password'))) {
+//         $request->session()->regenerate();
+
+//         $user = Auth::user(); // ✅ THIS IS THE FIX
+
+//         return response()->json([
+//             'success' => true,
+//             'message' => 'Login successful',
+//             'user' => [
+//                 'id' => $user->id,
+//                 'name' => $user->name,
+//                 'email' => $user->email,
+//             ],
+//         ], 200);
+//     }
+
+//     return response()->json([
+//         'success' => false,
+//         'message' => 'Invalid credentials',
+//     ], 401);
+// }
+
 }
